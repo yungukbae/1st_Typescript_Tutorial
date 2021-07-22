@@ -1,11 +1,25 @@
-const character = 'mario';
+let names = ['luigi','mario','yoshi']
 
-console.log(character)
+names.push('toad');
+// names.push(3);
+// names[0] = 3;
 
-const inputs = document.querySelectorAll('input')
+let numbers = [10,20,30,40]
 
-console.log(inputs)
+numbers.push(25);
+// numbers.push('shaun');
+// numbers[1] = 'shaun'
 
-inputs.forEach(input => {
-    console.log(input);
-})
+let mixed = ['ken',4,'chun-li',8,9];
+
+mixed.push('ryu');
+mixed.push(10);
+mixed[0] = 3;
+
+let ninja = {
+    name:'mario',
+    belt:'black',
+    age:30
+};
+
+
