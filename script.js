@@ -1,13 +1,15 @@
-var character = 'mario';
-var age = 30;
-var isBlackBelt = false;
-//character = 20;
-character = 'luigi';
-//age = 'yoshi';
-age = 40;
-//isBlackBelt = 'yes';
-isBlackBelt = true;
-var circ = function (diameter) {
-    return diameter * Math.PI;
-};
-console.log(circ(7.5));
+//explicit types
+var character;
+var age;
+var isLoggedIn;
+age = 30;
+isLoggedIn = true;
+//arrays
+var ninjas = [];
+ninjas.push('shaun');
+//union types
+var mixed = [];
+mixed.push('hello');
+mixed.push(20);
+mixed.push(false);
+console.log(mixed);
