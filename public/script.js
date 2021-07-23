@@ -1,15 +1,22 @@
 "use strict";
+// let greet: Function;
+//example 1
 let greet;
-greet = () => {
-    console.log('hello, again');
+greet = (name, greeting) => {
+    console.log(`${name} says ${greeting}`);
 };
-const add = (a, b, c = 10) => {
-    console.log(a + b);
-    console.log(c);
+//example 2
+let calc;
+calc = (numOne, numTwo, action) => {
+    if (action === 'add') {
+        return numOne + numTwo;
+    }
+    else {
+        return numOne - numTwo;
+    }
 };
-add(5, 10, '20');
-//(parameter:parameter type):return type
-const minus = (a, b) => {
-    return a + b;
+//example 3
+let logDetails;
+logDetails = (ninja) => {
+    console.log(`${ninja.name} is ${ninja.age} years old`);
 };
-let result = minus(10, 7);
