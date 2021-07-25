@@ -1,28 +1,31 @@
-// let greet: Function;
-
-//example 1
-let greet: (a: string, b: string) => void;
-greet = (name: string, greeting: string) => {
-    console.log(`${name} says ${greeting}`);
-}
+// const anchor = document.querySelector('a')!;
 
 
-//example 2
-let calc: (a: number, b: number, c: string) => number;
+// // if(anchor){
+// //     console.log(anchor.href)
+// // }
 
-calc = (numOne: number, numTwo: number, action: string) => {
-    if(action === 'add'){
-        return numOne + numTwo;
-    }else{
-        return numOne - numTwo;
-    }
-}
 
-//example 3
-let logDetails: (obj: {name: string, age: number}) =>  void;
+// console.log(anchor.href)
 
-type person = {name:string, age:number}
 
-logDetails = (ninja: person) => {
-    console.log(`${ninja.name} is ${ninja.age} years old`);
-}
+// const form = document.querySelector('form')!;
+
+const form = document.querySelector('.new-item-form') as HTMLFormElement;  //type casting
+console.log(form.children);
+
+//inputs
+const type = document.querySelector('#type') as HTMLSelectElement;
+const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
+const details = document.querySelector('#details') as HTMLInputElement;
+const amount = document.querySelector('#amount') as HTMLInputElement;
+
+form.addEventListener('submit', (e:Event) => {
+    e.preventDefault();
+    console.log(
+        type.value,
+        tofrom.value,
+        details.value,
+        amount.value
+    )
+})
