@@ -22,10 +22,11 @@ console.log(invTwo);
 let invoices = [];
 invoices.push(invOne);
 invoices.push(invTwo);
-invOne.client = 'yoshi';
-invTwo.amount = 400;
-console.log(invOne, invTwo);
-console.log(invoices);
+invoices.forEach(inv => {
+    // console.log(inv.client, inv.details, inv.amount, inv.format()); => error, details is private
+    // inv.client = 'something else'; => error, client is read only
+    console.log(inv.client, inv.amount, inv.format());
+});
 const form = document.querySelector('.new-item-form'); //type casting
 // console.log(form.children);
 //inputs
