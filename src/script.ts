@@ -45,14 +45,17 @@ const amount = document.querySelector('#amount') as HTMLInputElement;
 const ul = document.querySelector('ul')!;
 const list = new ListTemplates(ul);
 
-form.addEventListener('submit', (e:Event) => {
+form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
+
+    let values: [string, string, number];
+    values = [tofrom.value, details.value, amount.valueAsNumber]
 
     let doc: HasFormatter;
     if (type.value === 'invoice'){
-        doc = new Invoice(tofrom.value,details.value, amount.valueAsNumber)
+        doc = new Invoice(...values)
     }else{
-        doc = new Payment(tofrom.value,details.value, amount.valueAsNumber)
+        doc = new Payment(...values)
     }
 
     console.log(
@@ -62,56 +65,16 @@ form.addEventListener('submit', (e:Event) => {
     list.render(doc, type.value, 'end');
 })
 
-//GENERICS    
+// tuples
+let arr = ['ryu',25,true]
+arr[0] = false;
+arr[1] = 'yoshi';
+arr = [30, false, 'yoshi'];
 
-// const addUID = <T extends {name: string}>(obj: T) => {
-//     let uid = Math.floor(Math.random() * 100);
-//     return {...obj, uid};
-// }
+let tup: [string, number, boolean] = ['ryu',25, true];
+tup[0] = 'ken';
+tup[1] = 30;
 
-// let docOne = addUID({name: 'yoshi', age:40})
-// console.log(docOne.age)
-
-
-// // GENERICS with Interfaces
-// interface Resource<T>{
-//     uid: number;
-//     resourceName: string;
-//     data: T;
-// }
-
-// const docThree: Resource<object> = {
-//     uid:1,
-//     resourceName:'person',
-//     data:{name: 'shaun'}
-// }
-
-// const docFour: Resource<string[]> = {
-//     uid:2,
-//     resourceName:'shoppingList',
-//     data: ['test','milk','toilet roll']
-// }
-
-
-//ENUMS
-enum ResourceType{BOOK, AUTHOR, FILM, DIRECTOR, PERSON}
-
-interface Resource<T> {
-    uid:number;
-    resourceType: ResourceType;
-    data:T;
-}
-
-const docOne: Resource<object> = {
-    uid: 1,
-    resourceType: ResourceType.BOOK,
-    data: {title: 'name of the wind'}
-}
-
-const docTwo: Resource<object> = {
-    uid:10,
-    resourceType: ResourceType.PERSON,
-    data: {name:'yoshi'}
-}
-
-console.log(docOne,docTwo)
+// let student: [string, number];
+// student = [234234, 'ken'];
+// student = ['chun-li',223423];
