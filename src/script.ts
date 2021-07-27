@@ -64,31 +64,54 @@ form.addEventListener('submit', (e:Event) => {
 
 //GENERICS    
 
-const addUID = <T extends {name: string}>(obj: T) => {
-    let uid = Math.floor(Math.random() * 100);
-    return {...obj, uid};
+// const addUID = <T extends {name: string}>(obj: T) => {
+//     let uid = Math.floor(Math.random() * 100);
+//     return {...obj, uid};
+// }
+
+// let docOne = addUID({name: 'yoshi', age:40})
+// console.log(docOne.age)
+
+
+// // GENERICS with Interfaces
+// interface Resource<T>{
+//     uid: number;
+//     resourceName: string;
+//     data: T;
+// }
+
+// const docThree: Resource<object> = {
+//     uid:1,
+//     resourceName:'person',
+//     data:{name: 'shaun'}
+// }
+
+// const docFour: Resource<string[]> = {
+//     uid:2,
+//     resourceName:'shoppingList',
+//     data: ['test','milk','toilet roll']
+// }
+
+
+//ENUMS
+enum ResourceType{BOOK, AUTHOR, FILM, DIRECTOR, PERSON}
+
+interface Resource<T> {
+    uid:number;
+    resourceType: ResourceType;
+    data:T;
 }
 
-let docOne = addUID({name: 'yoshi', age:40})
-console.log(docOne.age)
-
-// GENERICS with Interfaces
-interface Resource<T>{
-    uid: number;
-    resourceName: string;
-    data: T;
+const docOne: Resource<object> = {
+    uid: 1,
+    resourceType: ResourceType.BOOK,
+    data: {title: 'name of the wind'}
 }
 
-const docThree: Resource<object> = {
-    uid:1,
-    resourceName:'person',
-    data:{name: 'shaun'}
+const docTwo: Resource<object> = {
+    uid:10,
+    resourceType: ResourceType.PERSON,
+    data: {name:'yoshi'}
 }
 
-const docFour: Resource<string[]> = {
-    uid:2,
-    resourceName:'shoppingList',
-    data: ['test','milk','toilet roll']
-}
-
-console.log(docThree,docFour)
+console.log(docOne,docTwo)
