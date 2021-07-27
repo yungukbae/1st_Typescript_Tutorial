@@ -1,49 +1,36 @@
-interface IsPerson{
+// interface IsPerson{
 
-    name: string;
-    age: number;
-    speak(a: string): void;
-    spend(a: number): number;
+//     name: string;
+//     age: number;
+//     speak(a: string): void;
+//     spend(a: number): number;
 
-}
+// }
 
-const me: IsPerson = {
-    name: 'shaun',
-    age: 30,
-    speak(text: string): void {
-        console.log(text);
-    },
-    spend(amount: number): number{
-        console.log('I spent', amount);
-        return amount
-    }
-};
+// const me: IsPerson = {
+//     name: 'shaun',
+//     age: 30,
+//     speak(text: string): void {
+//         console.log(text);
+//     },
+//     spend(amount: number): number{
+//         console.log('I spent', amount);
+//         return amount
+//     }
+// };
 
-const greetPerson = (person: IsPerson) => {
-    console.log('hello',person.name)
-}
+// const greetPerson = (person: IsPerson) => {
+//     console.log('hello',person.name)
+// }
 
-greetPerson(me);
-console.log(me);
+// greetPerson(me);
+// console.log(me);
 
 
 import {Invoice} from './classes/invoice.js'
-
-const invOne = new Invoice('mario','work on the mario website',250);
-const invTwo = new Invoice('luigi','work on the luigi website',300);
-
-console.log(invOne)
-console.log(invTwo)
-
-let invoices: Invoice[] = [];
-invoices.push(invOne);
-invoices.push(invTwo);
-
-invoices.forEach(inv => {
-    // console.log(inv.client, inv.details, inv.amount, inv.format()); => error, details is private
-    // inv.client = 'something else'; => error, client is read only
-    console.log(inv.client, inv.amount, inv.format());
-})
+import { ListTemplates } from './classes/listTmeplates.js';
+import {Payment} from './classes/payment.js'
+import {HasFormatter} from './interfaces/HasFormatter.js'
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;  //type casting
 // console.log(form.children);
@@ -54,12 +41,23 @@ const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
 const details = document.querySelector('#details') as HTMLInputElement;
 const amount = document.querySelector('#amount') as HTMLInputElement;
 
+//list template instance
+const ul = document.querySelector('ul')!;
+const list = new ListTemplates(ul);
+
 form.addEventListener('submit', (e:Event) => {
     e.preventDefault();
+
+    let doc: HasFormatter;
+    if (type.value === 'invoice'){
+        doc = new Invoice(tofrom.value,details.value, amount.valueAsNumber)
+    }else{
+        doc = new Payment(tofrom.value,details.value, amount.valueAsNumber)
+    }
+
     console.log(
-        type.value,
-        tofrom.value,
-        details.value,
-        amount.valueAsNumber
+        doc
     )
+
+    list.render(doc, type.value, 'end');
 })
